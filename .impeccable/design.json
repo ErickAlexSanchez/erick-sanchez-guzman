@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T20:45:00-06:00",
+  "title": "Design System: Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "wool": {
+        "role": "neutral",
+        "displayName": "Charcoal wool",
+        "canonical": "#1A1614"
+      },
+      "label": {
+        "role": "neutral",
+        "displayName": "Cream label",
+        "canonical": "#E7DCC8"
+      },
+      "thread": {
+        "role": "neutral",
+        "displayName": "Basting thread",
+        "canonical": "#F3EADF"
+      },
+      "field-away": {
+        "role": "neutral",
+        "displayName": "Uncut cloth",
+        "canonical": "#D4C4AE"
+      },
+      "brass": {
+        "role": "primary",
+        "displayName": "Brass pin",
+        "canonical": "#8C6A32"
+      },
+      "brass-ink": {
+        "role": "primary",
+        "displayName": "Brass ink",
+        "canonical": "#E0C48A"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Name",
+        "purpose": "The two-line name on the label."
+      },
+      "headline": {
+        "displayName": "Section",
+        "purpose": "About, Experience, Work, Contact."
+      },
+      "title": {
+        "displayName": "Decision",
+        "purpose": "The case-study headline."
+      },
+      "body": {
+        "displayName": "Notes",
+        "purpose": "Order-book prose, 68ch."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "cloth-snap",
+        "value": "120ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Background and text color when the theme changes. Removed when reduced motion is requested."
+      }
+    ],
+    "breakpoints": [
+      { "name": "bar", "value": "800px" }
+    ],
+    "northStar": "The Commission",
+    "rules": [
+      "Brass is only the pin.",
+      "The nameplate stays cream.",
+      "No shadow and no second typeface."
+    ]
+  }
+}

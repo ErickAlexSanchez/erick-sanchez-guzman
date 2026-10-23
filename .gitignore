@@ -1,0 +1,6 @@
+node_modules
+dist
+.seed-roll.txt
+.impeccable/review
+.impeccable/brief-body.md
+*.local
