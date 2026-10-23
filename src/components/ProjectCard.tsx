@@ -12,7 +12,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article
-      className="elevate card-hover flex min-w-0 flex-col rounded-2xl bg-surface-container-high p-space-lg md:p-space-xl"
+      className="elevate card-hover flex min-w-0 scroll-mt-28 flex-col rounded-2xl bg-surface-container-high p-space-lg md:p-space-xl"
       id={project.id}
     >
       <div className="flex items-baseline justify-between gap-4">
@@ -33,8 +33,8 @@ export function ProjectCard({ project }: { project: Project }) {
             <dt className="font-label-code text-[0.6875rem] text-on-surface-variant uppercase">
               {tx(locale, fact.label)}
             </dt>
-            <dd className="mt-1 text-sm leading-snug font-semibold text-on-surface">
-              {tx(locale, fact.value).replaceAll("-", "\u2011")}
+            <dd className="mt-1 text-sm leading-snug font-semibold break-words text-on-surface">
+              {tx(locale, fact.value)}
             </dd>
           </div>
         ))}

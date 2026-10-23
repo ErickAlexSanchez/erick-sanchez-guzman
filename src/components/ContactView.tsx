@@ -41,17 +41,14 @@ export function ContactView() {
               <h3 className="mt-1 font-headline text-base font-semibold text-on-surface">
                 {copy.contact.leadTitle}
               </h3>
-              <p className="mt-1 max-w-[62ch] text-pretty font-body-md text-body-md text-on-surface-variant">
-                {copy.contact.leadBody}
-              </p>
-            </li>
-            <li className="border-l border-outline-variant pl-4">
-              <h3 className="font-headline text-base font-semibold text-on-surface">
-                {copy.contact.freelanceTitle}
-              </h3>
-              <p className="mt-1 max-w-[62ch] text-pretty font-body-md text-body-md text-on-surface-variant">
-                {copy.contact.freelanceBody}
-              </p>
+              {copy.contact.leadLines.map((line) => (
+                <p
+                  className="mt-2 max-w-[62ch] text-pretty font-body-md text-body-md text-on-surface-variant"
+                  key={line}
+                >
+                  {line}
+                </p>
+              ))}
             </li>
             {copy.credentials.map((item) => (
               <li className="border-l border-outline-variant pl-4" key={item}>
@@ -77,7 +74,7 @@ export function ContactView() {
             {channels.map((channel) => (
               <li key={channel.label}>
                 <a
-                  className="flex min-h-11 items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3"
+                  className="card-hover flex min-h-11 items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3"
                   href={channel.href}
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}

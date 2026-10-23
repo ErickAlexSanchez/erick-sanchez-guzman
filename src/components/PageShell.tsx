@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useLayoutEffect, type ReactNode } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { person } from "../content/profile";
 import { routes, type RouteId } from "../content/routes";
 import { useLocale } from "./LocaleProvider";
@@ -92,8 +92,9 @@ export function PageShell({
 }) {
   const { copy } = useLocale();
   const pathname = usePathname();
+  const query = useSearchParams().toString();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     pinScroll();
     const frame = requestAnimationFrame(pinScroll);
     const timer = window.setTimeout(pinScroll, 80);
@@ -101,7 +102,7 @@ export function PageShell({
       cancelAnimationFrame(frame);
       window.clearTimeout(timer);
     };
-  }, [pathname]);
+  }, [pathname, query]);
 
   return (
     <>
@@ -111,8 +112,9 @@ export function PageShell({
       <header className="chrome-top fixed inset-x-0 top-0 z-50 h-16 bg-surface-container-lowest/92 backdrop-blur-2xl">
         <div className="shell flex h-full items-center gap-2 px-margin">
           <Link
-            className="flex min-w-0 flex-1 items-center gap-2 rounded-lg"
+            className="flex min-h-11 min-w-0 flex-1 items-center gap-2 rounded-lg"
             href="/"
+            scroll={false}
             onClick={() => {
               if (window.location.pathname === "/") {
                 window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -147,6 +149,7 @@ export function PageShell({
             aria-label={copy.contactLink}
             className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface-container-high sm:inline-flex"
             href="/contact"
+            scroll={false}
           >
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-highest font-label-code text-[0.7rem] text-primary">
               EG
@@ -184,7 +187,16 @@ export function PageShell({
                 }`}
                 href={route.href}
                 key={route.id}
-                scroll
+                onClick={() => {
+                  if (
+                    window.location.pathname === route.href &&
+                    window.location.search === "" &&
+                    window.location.hash === ""
+                  ) {
+                    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                  }
+                }}
+                scroll={false}
               >
                 <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   {route.icon}

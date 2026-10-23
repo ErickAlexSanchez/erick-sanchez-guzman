@@ -187,6 +187,15 @@
 
   h1,
   h2,
+  h3,
+  p,
+  li,
+  dd {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
   h3 {
     scroll-margin-top: 5.5rem;
   }
@@ -237,14 +246,20 @@
 
   .material-symbols-outlined {
     display: inline-block;
-    width: 1em;
-    height: 1em;
-    overflow: hidden;
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    overflow: visible;
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
     line-height: 1;
     letter-spacing: normal;
+    text-transform: none;
     white-space: nowrap;
+    word-wrap: normal;
     direction: ltr;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    vertical-align: middle;
   }
 }
 
@@ -285,6 +300,9 @@
 }
 
 .title-gradient {
+  overflow: visible;
+  padding-block: 0.08em;
+  line-height: 1.25;
   background-image: linear-gradient(
     105deg,
     var(--emphasis-from) 0%,
@@ -336,12 +354,25 @@
   color: #001e2c;
 }
 
+.card-hover {
+  transition: background-image 200ms ease;
+}
+
 .card-hover:hover {
   background-image: linear-gradient(
     155deg,
-    var(--surface-container-high) 0%,
-    color-mix(in srgb, var(--field-core) 62%, var(--surface-container-high)) 100%
+    color-mix(in srgb, var(--emphasis-from) 22%, var(--surface-container-high)) 0%,
+    color-mix(in srgb, var(--emphasis-to) 34%, var(--surface-container-high)) 100%
   );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover,
+  .button-gradient,
+  .button-quiet,
+  .chip-hover {
+    transition: none;
+  }
 }
 
 .field {
@@ -349,14 +380,20 @@
   inset: 0;
   z-index: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100dvh;
   pointer-events: none;
   background: radial-gradient(
-    circle farthest-corner at var(--field-x, 50%) var(--field-y, 38%),
+    ellipse farthest-corner at var(--field-x, 50%) var(--field-y, 38%),
     var(--field-core) 0%,
-    var(--field-mid) 55%,
+    var(--field-mid) 42%,
     var(--field-edge) 100%
   );
+}
+
+.chip-hover {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .sr-only {
@@ -395,8 +432,42 @@
   display: none;
 }
 
-:root[data-theme="dark"] .material-symbols-outlined.theme-when-dark {
-  display: inline-block;
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4f6fb;
+  --surface: #f4f6fb;
+  --surface-dim: #e6ebf3;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eef2f8;
+  --surface-container: #e6ebf4;
+  --surface-container-high: #ffffff;
+  --surface-container-highest: #dde3ee;
+  --on-surface: #141820;
+  --on-surface-variant: #3a4656;
+  --on-background: #141820;
+  --primary: #075985;
+  --secondary: #312e81;
+  --secondary-container: #2f3aa3;
+  --tertiary: #047857;
+  --tertiary-container: #0f9f6e;
+  --tertiary-fixed: #047857;
+  --tertiary-fixed-dim: #047857;
+  --on-tertiary: #003825;
+  --outline: #5c6b7c;
+  --outline-variant: #d5dbe6;
+  --error: #9f1239;
+  --emphasis-from: #0369a1;
+  --emphasis-via: #075985;
+  --emphasis-to: #312e81;
+  --field-core: #9ed0f2;
+  --field-mid: #d5e8f6;
+  --field-edge: #eef3f9;
+  --focus: #0369a1;
+  --scrollbar: #8b9cb0;
+  --shadow-card: 0 16px 32px -20px rgba(20, 28, 45, 0.35), 0 2px 8px -4px rgba(20, 28, 45, 0.12);
+  --shadow-header: 0 1px 8px rgba(20, 28, 45, 0.08);
+  --shadow-footer: 0 -8px 24px rgba(20, 28, 45, 0.08);
 }
 
 :root[data-theme="light"] .material-symbols-outlined.theme-when-dark {

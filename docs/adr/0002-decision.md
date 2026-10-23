@@ -16,6 +16,8 @@ Copy and the six case studies live in `src/content` as TypeScript modules. `src/
 
 Rendering is the default Next.js server render. Vercel detects Next.js from `package.json` and runs `npm install` and `next build`. This repository does not add a `vercel.json`, because a single Next.js app does not need one.
 
+`src/content/projects.ts` now lists two personal products and then the six portfolio versions. `/privacy` and `/cookies` are static notices in `src/content/legal.ts`. The projects page filters that same list in the browser. None of this loads copy from a database or another service.
+
 ## Consequences
 
 - Editing a case study is a commit, and `tsc --noEmit` checks the module.
