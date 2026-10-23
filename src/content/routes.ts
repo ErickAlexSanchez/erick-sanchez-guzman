@@ -1,26 +1,8 @@
 export const routes = [
-  { id: "home", href: "/", label: "Inicio", icon: "terminal", header: "Inicio" },
-  {
-    id: "projects",
-    href: "/projects",
-    label: "Proyectos",
-    icon: "dataset",
-    header: "Proyectos",
-  },
-  {
-    id: "stack",
-    href: "/stack",
-    label: "Stack & Tech",
-    icon: "layers",
-    header: "Stack & Tech",
-  },
-  {
-    id: "contact",
-    href: "/contact",
-    label: "Contacto & CV",
-    icon: "badge",
-    header: "Contacto & CV",
-  },
+  { id: "home", href: "/", icon: "terminal" },
+  { id: "projects", href: "/projects", icon: "dataset" },
+  { id: "stack", href: "/stack", icon: "layers" },
+  { id: "contact", href: "/contact", icon: "badge" },
 ] as const;
 
 export type RouteId = (typeof routes)[number]["id"];

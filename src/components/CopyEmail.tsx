@@ -1,29 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import { fill } from "../content/messages";
+import { person } from "../content/profile";
+import { useLocale } from "./LocaleProvider";
 
-export function CopyEmail({ email }: { email: string }) {
-  const [copied, setCopied] = useState(false);
+export function CopyEmail() {
+  const { copy } = useLocale();
+  const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
+  const message =
+    state === "copied"
+      ? copy.copyEmail.copied
+      : state === "failed"
+        ? fill(copy.copyEmail.failed, { email: person.email })
+        : "";
 
   return (
-    <div className="flex items-center gap-space-sm">
+    <div className="flex max-w-full flex-wrap items-center gap-2">
       <button
-        aria-label={copied ? "Correo copiado" : "Copiar correo de contacto"}
-        className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl bg-surface-container-high/90 text-on-surface shadow-sm hover:text-primary-container"
+        aria-label={copy.copyEmail.copy}
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface-container-high text-on-surface hover:text-primary"
         onClick={async () => {
-          await navigator.clipboard.writeText(email);
-          setCopied(true);
-          window.setTimeout(() => setCopied(false), 3000);
+          try {
+            await navigator.clipboard.writeText(person.email);
+            setState("copied");
+            window.setTimeout(() => setState("idle"), 4000);
+          } catch {
+            setState("failed");
+          }
         }}
-        title="Copiar correo de contacto"
         type="button"
       >
-        <span className="material-symbols-outlined text-lg">
-          {copied ? "check" : "content_copy"}
+        <span aria-hidden="true" className="material-symbols-outlined text-lg">
+          {state === "copied" ? "check" : "content_copy"}
         </span>
       </button>
-      <span className="sr-only" role="status">
-        {copied ? `Correo copiado: ${email}` : ""}
+      <span className="max-w-[28ch] text-pretty text-sm text-on-surface-variant" role="status">
+        {message}
       </span>
     </div>
   );

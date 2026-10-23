@@ -2,28 +2,34 @@ This is a portfolio version of a production system I built for a company whose c
 
 # Portfolio
 
-Public site for Erick Alexander Sánchez Guzmán, senior frontend engineer. It is the index for six portfolio versions. It does not import their code, and it is not itself a client product. The boundary above applies because the case studies are those versions.
+Public site for Erick Alexander Sánchez Guzmán, senior frontend engineer. It lists two personal products, WakeMeGPS and stoicequilibrium, and six portfolio projects. It does not import their code, and it is not itself a client product. The boundary above applies to those six case studies. It does not apply to the two personal products.
+
+WakeMeGPS and stoicequilibrium are personal products. The six projects after them are portfolio versions for personal review, similar to professional work, and not a client's codebase. From 2020 to 2026 he has been frontend lead at Elemental 4 Web. He also freelances, building production interfaces for other product teams.
 
 A staff reader can review the rendering choice, the routes, and the content model in this file and in `docs/adr`.
 
 ## What it is
 
-Four pages, in Spanish:
+Four pages. English is the default. A visitor can switch to Spanish.
 
 | Path | Page |
 | --- | --- |
-| `/` | Inicio |
-| `/projects` | Proyectos y casos de estudio |
-| `/stack` | Stack y arquitectura |
-| `/contact` | Contacto y trayectoria |
+| `/` | Home |
+| `/projects` | Highlighted projects |
+| `/stack` | Stack and architecture |
+| `/contact` | Contact and background |
 
-Home states place, remote terms, hours, and availability, then opens on the Lumen decision. Projects repeats the six decisions as the headings and records the rule each version keeps. Stack names the tools and points at those decisions. Contact lists email, phone, LinkedIn, trajectory, education, and languages.
+Home states the role, the years at Elemental 4 Web, the freelance work, and that he is available now, then opens on WakeMeGPS. Highlights lists WakeMeGPS, stoicequilibrium, and then the six portfolio versions. Stack lists every skill from the resume, grouped for scanning, and points at those decisions. Contact lists email, LinkedIn, GitHub, background, education, and languages. There is no contact form.
 
-The projects page links a GitHub repository only when that folder has a public remote. Slot and Pathmark have no remote, so the page names `05-slot` and `06-pathmark` and does not publish a URL. Draftline is also at https://web-xi-nine-93.vercel.app. Hearth is also at https://hearth-nine-pink.vercel.app. The other cases have no public app URL.
+WakeMeGPS is at https://wake-me-gps-web-seven.vercel.app and https://github.com/ErickAlexSanchez/wake-me-gps-web. stoicequilibrium is at https://stoicequilibrium.com/. The projects page links a GitHub repository only when that folder has a public remote. `05-slot` and `06-pathmark` have no remote, so the page names the folder and does not publish a URL. Draftline is also at https://web-xi-nine-93.vercel.app. Hearth is also at https://hearth-nine-pink.vercel.app. Lumen and Vesper & Counsel have a repository and no public app URL.
 
 ## Rendering
 
-Next.js App Router. Every page is a server component. `src/components/PageShell.tsx` renders the header, `main`, and a footer whose navigation is the bottom bar. The current page is a prop, so marking the active link does not require a client component. Navigation uses ordinary links. Copying the email address and opening a mail draft are the only client islands. The type is Inter and JetBrains Mono on a `#0f131c` surface, with the same color tokens on every route.
+Next.js App Router. `src/components/PageShell.tsx` renders the header, `main`, and a footer whose navigation is the bottom bar. The header holds the language switch and the theme switch. Navigation uses ordinary links.
+
+The language choice is stored in `localStorage` under `locale` (`en` or `es`). A matching cookie lets the server render that language, and `document.documentElement.lang` follows it. The theme choice is stored in `localStorage` under `theme` (`light` or `dark`). Until a visitor chooses, the theme follows `prefers-color-scheme`. The dark theme uses the `#0f131c` surface. The light theme keeps the same layout and type on a light field. Inter and JetBrains Mono are loaded with `next/font`.
+
+Copying the email address, opening a mail draft, and the two switches are client components. Copy and the project list are still TypeScript modules, so the dictionary stays small.
 
 There is no environment variable. There is no `.env` file.
 

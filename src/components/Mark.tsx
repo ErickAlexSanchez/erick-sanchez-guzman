@@ -3,7 +3,9 @@ export function Mark() {
     <svg
       aria-hidden="true"
       className="h-8 w-8 shrink-0"
+      height={32}
       viewBox="0 0 32 32"
+      width={32}
     >
       <rect
         fill="#121722"

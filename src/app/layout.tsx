@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { Field } from "../components/Field";
+import { LocaleProvider } from "../components/LocaleProvider";
+import { messages } from "../content/messages";
 import { person } from "../content/profile";
+import { getLocale, getRequestOrigin, getStoredTheme } from "../lib/request";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,36 +20,70 @@ const mono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: person.name,
-    template: `%s · ${person.name}`,
-  },
-  description:
-    "Ingeniero frontend senior en Ciudad de México. Remoto, como contractor o por EOR. Hora del Centro, con cruce a la hora del Este de EE. UU. Disponible ahora.",
-  icons: { icon: "/favicon.svg" },
-};
+const preferenceScript =
+  '(function(){try{var l=localStorage.getItem("locale");if(l==="en"||l==="es")document.documentElement.lang=l;var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();';
 
 export const viewport: Viewport = {
-  themeColor: "#0f131c",
   width: "device-width",
   initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f6fb" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f131c" },
+  ],
 };
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const origin = await getRequestOrigin();
+  const site = messages[locale].meta.site;
+  return {
+    ...(origin ? { metadataBase: new URL(origin) } : {}),
+    title: {
+      default: site.title,
+      template: `%s · ${person.name}`,
+    },
+    description: site.description,
+    openGraph: {
+      title: site.title,
+      description: site.description,
+      type: "website",
+    },
+    icons: { icon: "/favicon.svg" },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const locale = await getLocale();
+  const theme = await getStoredTheme();
+  const origin = await getRequestOrigin();
+
   return (
-    <html className={`dark ${inter.variable} ${mono.variable}`} lang="es">
+    <html
+      className={`${inter.variable} ${mono.variable}`}
+      data-scroll-behavior="smooth"
+      lang={locale}
+      suppressHydrationWarning
+      {...(theme ? { "data-theme": theme } : {})}
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: preferenceScript }} />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-surface font-sans text-on-surface antialiased">{children}</body>
+      <body className="bg-transparent font-sans text-on-surface antialiased">
+        <Field />
+        <div className="relative z-10">
+          <LocaleProvider initialLocale={locale} initialTheme={theme} origin={origin}>
+            {children}
+          </LocaleProvider>
+        </div>
+      </body>
     </html>
   );
 }
