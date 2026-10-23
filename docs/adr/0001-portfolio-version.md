@@ -6,13 +6,11 @@ Accepted
 
 ## Context
 
-The case studies on this site are portfolio versions of production systems. A confidentiality policy does not allow the real products to be shown. The original work cannot be published. Each version follows the same architecture decision, with a different scope, brand, and data. It is not the client's codebase.
-
-This website is not one of those products. It is the public index: four pages a hiring reader can open.
+The six highlighted cases are portfolio versions of work that cannot be shown, similar to professional projects. WakeMeGPS and stoicequilibrium are personal products and sit outside that boundary. This website is the public index of those pages. It is not one of the withheld products.
 
 ## Decision
 
-Keep this site in its own repository. State the boundary in the README before the architecture notes. On the projects page, link a case study to a GitHub repository only when that folder has a public remote. When it does not, name the local folder and do not publish a URL that would 404.
+Keep this site in its own repository. The README names the boundary in one sentence: the six highlighted cases are portfolio versions of work that cannot be shown. On the projects page, link a case study to a GitHub repository only when that folder has a public remote. When it does not, name the local folder and do not publish a URL that would 404.
 
 ## Consequences
 

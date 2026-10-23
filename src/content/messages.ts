@@ -57,7 +57,6 @@ export type Dictionary = {
     windowLabel: string;
     work: string;
     terms: string;
-    also: string;
     groupsTitle: string;
     groups: readonly { id: string; title: string; items: readonly string[] }[];
     decisionsTitle: string;
@@ -69,9 +68,7 @@ export type Dictionary = {
     emailCta: string;
     background: string;
     leadTitle: string;
-    leadBody: string;
-    freelanceTitle: string;
-    freelanceBody: string;
+    leadLines: readonly string[];
     channels: string;
     channelGithub: string;
     channelLinkedIn: string;
@@ -137,17 +134,17 @@ const en = {
     site: {
       title: "Erick Alexander Sánchez Guzmán",
       description:
-        "Erick Alexander Sánchez Guzmán, senior frontend engineer. Frontend lead at Elemental 4 Web, 2020–2026, and freelance interface work for other product teams. Available now.",
+        "Erick Alexander Sánchez Guzmán, senior frontend engineer at Elemental 4 Web, 2020–2026. Production frontends in React, TypeScript, and Next.js. Available now.",
     },
     home: {
       title: "Erick Alexander Sánchez Guzmán",
       description:
-        "Erick Alexander Sánchez Guzmán is a senior frontend engineer and frontend lead at Elemental 4 Web, 2020–2026. He also builds production interfaces for other product teams. Available now.",
+        "Erick Alexander Sánchez Guzmán is a senior frontend engineer at Elemental 4 Web, 2020–2026. He ships production frontends in React, TypeScript, and Next.js. Available now.",
     },
     projects: {
       title: "Highlighted projects",
       description:
-        "Highlighted work by Erick Alexander Sánchez Guzmán. WakeMeGPS and stoicequilibrium are personal products. Six later pieces are portfolio versions, not a client's codebase.",
+        "Highlighted work by Erick Alexander Sánchez Guzmán. WakeMeGPS and stoicequilibrium are personal products, followed by six selected highlights.",
     },
     stack: {
       title: "Stack and architecture",
@@ -157,7 +154,7 @@ const en = {
     contact: {
       title: "Contact",
       description:
-        "Email or LinkedIn for Erick Alexander Sánchez Guzmán, senior frontend engineer. Frontend lead at Elemental 4 Web, 2020–2026. Available now.",
+        "Email or LinkedIn for Erick Alexander Sánchez Guzmán, senior frontend engineer at Elemental 4 Web, 2020–2026. Available now.",
     },
     privacy: {
       title: "Privacy notice",
@@ -176,7 +173,7 @@ const en = {
   },
   home: {
     title: "I lead frontend for product teams.",
-    lead: "I'm Erick Alexander Sánchez Guzmán, a senior frontend engineer. From 2020 to 2026 I have been frontend lead at Elemental 4 Web. I also freelance, building production interfaces for other product teams. I'm available now.",
+    lead: "I'm Erick Alexander Sánchez Guzmán, a senior frontend engineer. From 2020 to 2026 I have been a senior frontend engineer at Elemental 4 Web, shipping production frontends in React, TypeScript, and Next.js for US and international product teams. I'm available now.",
     skillsLabel: "Principal skills",
     skills: homeSkills,
     seeProjects: "See the highlights",
@@ -191,7 +188,7 @@ const en = {
       {
         icon: "devices",
         title: "Product interfaces",
-        text: "Next.js and React for the screens people actually use, from the public site through the signed-in product. Freelance and Elemental 4 Web, 2020–2026, frontend lead.",
+        text: "Next.js and React for the screens people actually use, from the public site through the signed-in product. Elemental 4 Web, 2020–2026.",
       },
       {
         icon: "verified",
@@ -204,7 +201,7 @@ const en = {
   },
   projects: {
     title: "Highlighted projects",
-    intro: "WakeMeGPS and stoicequilibrium are personal products. The six after them are portfolio versions for personal review, similar to professional projects I have worked on or that I consider important. They are not a client's codebase.",
+    intro: "WakeMeGPS and stoicequilibrium are personal products.",
     filterLabel: "Filter highlights",
     emptyTitle: "No project uses that filter",
     emptyBody: "Clear the filter to see every project.",
@@ -219,7 +216,6 @@ const en = {
     windowLabel: "facts",
     work: "Remote",
     terms: "Contractor or EOR",
-    also: "Production interfaces for other product teams",
     groupsTitle: "Skills",
     groups: [
       {
@@ -308,10 +304,15 @@ const en = {
     terms: "I work remotely, as a contractor or through an employer of record.",
     emailCta: "Email me",
     background: "Background",
-    leadTitle: "Frontend lead",
-    leadBody: "Elemental 4 Web, 2020–2026. Clients from that work are not named here.",
-    freelanceTitle: "Freelance",
-    freelanceBody: "I also freelance, building production interfaces for other product teams.",
+    leadTitle: "Senior Frontend Engineer",
+    leadLines: [
+      "Elemental 4 Web. Remote, for US and international product teams.",
+      "I ship production frontends in strict React and TypeScript, and in Next.js (App Router, SSR/SSG, ISR), including a shared Storybook design system. Module Federation is only where another team deploys on its own release.",
+      "Client and server state use Redux Toolkit, Zustand, and TanStack Query, with caching, invalidation, and typed REST and GraphQL contracts. Forms use React Hook Form and Zod.",
+      "I own UI architecture, accessibility, and Core Web Vitals. Azure DevOps runs lint, unit and end-to-end tests, Docker image builds, and release to Azure App Service and Static Web Apps. Protected branches use Jest, React Testing Library, Playwright, Cypress, ESLint, Prettier, SonarQube, and Mend.",
+      "I integrate authentication, role-based access, and third-party APIs (Stripe, Zoom) through a Node.js BFF, and I mentor engineers through pairing and design reviews.",
+      "The interfaces cover a design system and Next.js product screens, content tools, membership, commerce, scheduling, and learning.",
+    ],
     channels: "Channels",
     channelGithub: "GitHub",
     channelLinkedIn: "LinkedIn",
@@ -319,6 +320,7 @@ const en = {
   },
   credentials: [
     "Bachelor's degree in Systems Engineering",
+    "Master's in Software Architecture, in progress",
     "Meta Front-End certificate",
     "IBM Full Stack certificate",
   ],
@@ -370,17 +372,17 @@ const es: Dictionary = {
     site: {
       title: "Erick Alexander Sánchez Guzmán",
       description:
-        "Erick Alexander Sánchez Guzmán, ingeniero frontend senior. Líder de frontend en Elemental 4 Web, 2020–2026, y trabajo freelance de interfaces para otros equipos de producto. Disponible ahora.",
+        "Erick Alexander Sánchez Guzmán, ingeniero frontend senior en Elemental 4 Web, 2020–2026. Frontends de producción en React, TypeScript y Next.js. Disponible ahora.",
     },
     home: {
       title: "Erick Alexander Sánchez Guzmán",
       description:
-        "Erick Alexander Sánchez Guzmán es ingeniero frontend senior y líder de frontend en Elemental 4 Web, 2020–2026. También hace interfaces de producción para otros equipos. Disponible ahora.",
+        "Erick Alexander Sánchez Guzmán es ingeniero frontend senior en Elemental 4 Web, 2020–2026. Publica frontends de producción en React, TypeScript y Next.js. Disponible ahora.",
     },
     projects: {
       title: "Proyectos destacados",
       description:
-        "Trabajo destacado de Erick Alexander Sánchez Guzmán. WakeMeGPS y stoicequilibrium son productos personales. Seis piezas posteriores son versiones de portafolio, no el código de un cliente.",
+        "Trabajo destacado de Erick Alexander Sánchez Guzmán. WakeMeGPS y stoicequilibrium son productos personales, seguidos de seis destacados.",
     },
     stack: {
       title: "Stack y arquitectura",
@@ -390,7 +392,7 @@ const es: Dictionary = {
     contact: {
       title: "Contacto",
       description:
-        "Correo o LinkedIn de Erick Alexander Sánchez Guzmán, ingeniero frontend senior. Líder de frontend en Elemental 4 Web, 2020–2026. Disponible ahora.",
+        "Correo o LinkedIn de Erick Alexander Sánchez Guzmán, ingeniero frontend senior en Elemental 4 Web, 2020–2026. Disponible ahora.",
     },
     privacy: {
       title: "Aviso de privacidad",
@@ -409,7 +411,7 @@ const es: Dictionary = {
   },
   home: {
     title: "Dirijo el frontend para equipos de producto.",
-    lead: "Soy Erick Alexander Sánchez Guzmán, ingeniero frontend senior. De 2020 a 2026 he sido líder de frontend en Elemental 4 Web. También trabajo como freelancer, haciendo interfaces de producción para otros equipos de producto. Estoy disponible ahora.",
+    lead: "Soy Erick Alexander Sánchez Guzmán, ingeniero frontend senior. De 2020 a 2026 he sido ingeniero frontend senior en Elemental 4 Web, y publico frontends de producción en React, TypeScript y Next.js para equipos de producto de Estados Unidos e internacionales. Estoy disponible ahora.",
     skillsLabel: "Habilidades principales",
     skills: homeSkills,
     seeProjects: "Ver los destacados",
@@ -424,7 +426,7 @@ const es: Dictionary = {
       {
         icon: "devices",
         title: "Interfaces de producto",
-        text: "Next.js y React para las pantallas que la gente usa de verdad, del sitio público al producto con sesión. Freelance y Elemental 4 Web, 2020–2026, líder de frontend.",
+        text: "Next.js y React para las pantallas que la gente usa de verdad, del sitio público al producto con sesión. Elemental 4 Web, 2020–2026.",
       },
       {
         icon: "verified",
@@ -437,7 +439,7 @@ const es: Dictionary = {
   },
   projects: {
     title: "Proyectos destacados",
-    intro: "WakeMeGPS y stoicequilibrium son productos personales. Los seis que siguen son versiones de portafolio para revisión personal, parecidas a proyectos profesionales en los que trabajé o que considero importantes. No son el código de un cliente.",
+    intro: "WakeMeGPS y stoicequilibrium son productos personales.",
     filterLabel: "Filtrar destacados",
     emptyTitle: "Ningún proyecto usa ese filtro",
     emptyBody: "Quita el filtro para ver todos los proyectos.",
@@ -452,7 +454,6 @@ const es: Dictionary = {
     windowLabel: "hechos",
     work: "Remoto",
     terms: "Contractor o EOR",
-    also: "Interfaces de producción para otros equipos de producto",
     groupsTitle: "Habilidades",
     groups: [
       {
@@ -541,10 +542,15 @@ const es: Dictionary = {
     terms: "Trabajo en remoto, como contractor o a través de un employer of record.",
     emailCta: "Escribir por correo",
     background: "Trayectoria",
-    leadTitle: "Líder de frontend",
-    leadBody: "Elemental 4 Web, 2020–2026. Los clientes de ese trabajo no se nombran aquí.",
-    freelanceTitle: "Freelance",
-    freelanceBody: "También trabajo como freelancer, haciendo interfaces de producción para otros equipos de producto.",
+    leadTitle: "Ingeniero frontend senior",
+    leadLines: [
+      "Elemental 4 Web. Remoto, para equipos de producto de Estados Unidos e internacionales.",
+      "Publico frontends de producción en React y TypeScript estrictos, y en Next.js (App Router, SSR/SSG, ISR), incluido un sistema de diseño compartido en Storybook. Module Federation solo entra cuando otro equipo despliega en su propio tren de publicación.",
+      "El estado de cliente y de servidor usa Redux Toolkit, Zustand y TanStack Query, con caché, invalidación y contratos tipados de REST y GraphQL. Los formularios usan React Hook Form y Zod.",
+      "Me encargo de la arquitectura de UI, la accesibilidad y los Core Web Vitals. Azure DevOps corre el lint, las pruebas unitarias y de extremo a extremo, las imágenes de Docker y la publicación en Azure App Service y Static Web Apps. Las ramas protegidas usan Jest, React Testing Library, Playwright, Cypress, ESLint, Prettier, SonarQube y Mend.",
+      "Integro autenticación, acceso por roles y APIs de terceros (Stripe, Zoom) a través de un BFF en Node.js, y acompaño a otros ingenieros en pairing y revisiones de diseño.",
+      "Las interfaces cubren un sistema de diseño y pantallas de producto en Next.js, herramientas de contenido, membresía, comercio, agenda y aprendizaje.",
+    ],
     channels: "Canales",
     channelGithub: "GitHub",
     channelLinkedIn: "LinkedIn",
@@ -552,6 +558,7 @@ const es: Dictionary = {
   },
   credentials: [
     "Licenciatura en Ingeniería en Sistemas",
+    "Maestría en Arquitectura de Software, en curso",
     "Certificado Meta Front-End",
     "Certificado IBM Full Stack",
   ],

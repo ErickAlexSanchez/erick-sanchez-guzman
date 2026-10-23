@@ -8,26 +8,19 @@ import { useLocale } from "./LocaleProvider";
 import { PageShell } from "./PageShell";
 import { RichText } from "./RichText";
 
-function practiceCode(role: string, work: string, terms: string, status: string, also: string) {
+function practiceCode(role: string, work: string, terms: string, status: string) {
   return `export const practice = {
   engineer: "${person.name}",
   role: "${role}",
   work: "${work}",
   terms: "${terms}",
-  status: "${status}",
-  also: "${also}"
+  status: "${status}"
 }`;
 }
 
 export function StackView() {
   const { copy, locale } = useLocale();
-  const code = practiceCode(
-    copy.role,
-    copy.stack.work,
-    copy.stack.terms,
-    copy.status,
-    copy.stack.also,
-  );
+  const code = practiceCode(copy.role, copy.stack.work, copy.stack.terms, copy.status);
 
   return (
     <PageShell current="stack">

@@ -21,6 +21,11 @@ export type Project = {
 
 const same = (text: string): L10n => ({ en: text, es: text });
 
+const portfolioNote: L10n = {
+  en: "This is a portfolio version of work that cannot be shown, similar to a professional project.",
+  es: "Esta es una versión de portafolio de un trabajo que no se puede mostrar, parecida a un proyecto profesional.",
+};
+
 export const projects: readonly Project[] = [
   {
     id: "wake-me-gps",
@@ -145,6 +150,7 @@ export const projects: readonly Project[] = [
         en: "There is no public app for Lumen. The repository is on GitHub.",
         es: "Lumen no tiene una aplicación pública. El repositorio está en GitHub.",
       },
+      portfolioNote,
     ],
   },
   {
@@ -193,6 +199,7 @@ export const projects: readonly Project[] = [
         en: "TanStack Query keeps lists and drafts for 60 seconds. The job detail uses a stale time of zero and refetches until the job reaches a finished state. This version has one tenant, a fake model adapter, and local disk for the files.",
         es: "TanStack Query conserva listas y borradores durante 60 segundos. El detalle del trabajo usa stale time cero y vuelve a consultar hasta un estado final. Esta versión tiene un tenant, un adaptador de modelo falso y disco local para los archivos.",
       },
+      portfolioNote,
     ],
   },
   {
@@ -242,6 +249,7 @@ export const projects: readonly Project[] = [
         en: "TanStack Query stores the server state for the feed, a post, the session, and the coach thread. Redux stores only whether the composer is open and the local draft. The coach stream is sent with `Cache-Control: no-store`.",
         es: "TanStack Query guarda el estado de servidor del feed, de una publicación, de la sesión y del hilo del coach. Redux guarda solo si el compositor está abierto y el borrador local. El stream del coach se envía con `Cache-Control: no-store`.",
       },
+      portfolioNote,
     ],
   },
   {
@@ -286,6 +294,7 @@ export const projects: readonly Project[] = [
         en: "Stripe settings can be saved. The connected column is constrained to false, and checkout does not read those settings. `STRIPE_MODE` only accepts `simulator`. Stripe is never called. There is no public app for this project.",
         es: "Se pueden guardar ajustes de Stripe. La columna connected está restringida a false, y el checkout no lee esos ajustes. `STRIPE_MODE` solo acepta `simulator`. Stripe no se llama nunca. Este proyecto no tiene una aplicación pública.",
       },
+      portfolioNote,
     ],
   },
   {
@@ -332,6 +341,7 @@ export const projects: readonly Project[] = [
         en: "The video adapter that runs opens a local room. Zoom is built only when the account id, the client id, and the client secret are all present. If the three are empty, Zoom stays inactive. A partial set refuses to start.",
         es: "El adaptador de video que corre abre una sala local. Zoom se construye solo cuando existen el account id, el client id y el client secret. Si los tres están vacíos, Zoom permanece inactivo. Un conjunto parcial se niega a arrancar.",
       },
+      portfolioNote,
     ],
   },
   {
@@ -374,6 +384,7 @@ export const projects: readonly Project[] = [
         en: "The lessons page is public. `GET /content/lessons` and the lesson document can be cached, and they do not carry the response key. Opening a lesson also requests progress, and that request sends `Authorization: Bearer local-demo-token`. Saving an answer sends the same header. There is no sign-in form. The browser does not grade the answer.",
         es: "La página de lecciones es pública. `GET /content/lessons` y el documento de la lección se pueden cachear, y no llevan la clave de respuesta. Abrir una lección también pide el progreso, y esa petición envía `Authorization: Bearer local-demo-token`. Guardar una respuesta envía el mismo header. No hay formulario de acceso. El navegador no califica la respuesta.",
       },
+      portfolioNote,
     ],
   },
 ];
