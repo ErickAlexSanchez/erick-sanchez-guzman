@@ -30,17 +30,14 @@ export function HomeView() {
           <ul aria-label={copy.home.skillsLabel} className="flex max-w-full flex-wrap gap-2">
             {copy.home.skills.map((skill) => (
               <li key={skill.label}>
-                <Link
-                  className={chipHover}
-                  href={skill.href}
-                >
+                <Link className={chipHover} href={skill.href} scroll={false}>
                   {skill.label}
                 </Link>
               </li>
             ))}
           </ul>
           <div className="flex flex-wrap items-center gap-3 pt-1">
-            <Link className={buttonPrimary} href="/projects">
+            <Link className={buttonPrimary} href="/projects" scroll={false}>
               {copy.home.seeProjects}
               <span aria-hidden="true" className="material-symbols-outlined text-lg">
                 arrow_forward
@@ -111,7 +108,7 @@ export function HomeView() {
           </ul>
         </section>
 
-        <section className="elevate rounded-2xl bg-surface-container-high p-space-lg md:p-space-xl">
+        <section className="elevate card-hover rounded-2xl bg-surface-container-high p-space-lg md:p-space-xl">
           <h2 className="font-headline text-lg font-semibold text-on-surface">{copy.home.workTitle}</h2>
           <p className="mt-space-md max-w-[68ch] text-pretty font-body-md text-body-md text-on-surface">
             {copy.home.workBody}

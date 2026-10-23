@@ -16,7 +16,7 @@ export function NotFoundView() {
       <p className="mt-space-md max-w-[62ch] text-pretty font-body-md text-body-md text-on-surface-variant">
         {copy.notFound.body}
       </p>
-      <Link className={`${buttonPrimary} mt-space-lg`} href="/">
+      <Link className={`${buttonPrimary} mt-space-lg`} href="/" scroll={false}>
         {copy.notFound.home}
       </Link>
     </PageShell>

@@ -74,7 +74,7 @@ export function ContactView() {
             {channels.map((channel) => (
               <li key={channel.label}>
                 <a
-                  className="flex min-h-11 items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3"
+                  className="card-hover flex min-h-11 items-center gap-3 rounded-xl bg-surface-container-high px-4 py-3"
                   href={channel.href}
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}

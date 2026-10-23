@@ -89,17 +89,17 @@ export type Dictionary = {
 };
 
 const homeSkills = [
-  { label: "React", href: "/stack#interface" },
-  { label: "TypeScript", href: "/stack#interface" },
-  { label: "Next.js", href: "/stack#interface" },
-  { label: "Design systems", href: "/stack#interface" },
-  { label: "Storybook", href: "/stack#interface" },
-  { label: "CSS3", href: "/stack#styling" },
-  { label: "Tailwind CSS", href: "/stack#styling" },
-  { label: "TanStack Query", href: "/stack#state" },
-  { label: "Redux Toolkit", href: "/stack#state" },
-  { label: "Node.js", href: "/stack#state" },
-  { label: "Playwright", href: "/stack#quality" },
+  { label: "React", href: "/stack" },
+  { label: "TypeScript", href: "/stack" },
+  { label: "Next.js", href: "/stack" },
+  { label: "Design systems", href: "/stack" },
+  { label: "Storybook", href: "/stack" },
+  { label: "CSS3", href: "/stack" },
+  { label: "Tailwind CSS", href: "/stack" },
+  { label: "TanStack Query", href: "/stack" },
+  { label: "Redux Toolkit", href: "/stack" },
+  { label: "Node.js", href: "/stack" },
+  { label: "Playwright", href: "/stack" },
 ] as const;
 
 const en = {
@@ -173,7 +173,7 @@ const en = {
   },
   home: {
     title: "I lead frontend for product teams.",
-    lead: "I'm Erick Alexander Sánchez Guzmán, a senior frontend engineer. From 2020 to 2026 I have been a senior frontend engineer at Elemental 4 Web, shipping production frontends in React, TypeScript, and Next.js for US and international product teams. I'm available now.",
+    lead: "I'm Erick Alexander Sánchez Guzmán, a senior frontend engineer. From 2020 to 2026 I have been frontend lead at Elemental 4 Web, shipping production frontends in React, TypeScript, and Next.js for US and international product teams. I'm available now.",
     skillsLabel: "Principal skills",
     skills: homeSkills,
     seeProjects: "See the highlights",
@@ -196,8 +196,8 @@ const en = {
         text: "Tests, accessibility checks, and CI run before a version moves. The proof sits in the pipeline, not in a slide.",
       },
     ],
-    workTitle: "How I take work",
-    workBody: "I work remotely, as a contractor or through an employer of record.",
+    workTitle: "Remote",
+    workBody: "Elemental 4 Web, 2020–2026, with US and international product teams.",
   },
   projects: {
     title: "Highlighted projects",
@@ -215,7 +215,7 @@ const en = {
     intro: "These are the skills from my resume.",
     windowLabel: "facts",
     work: "Remote",
-    terms: "Contractor or EOR",
+    terms: "Product teams",
     groupsTitle: "Skills",
     groups: [
       {
@@ -301,10 +301,10 @@ const en = {
       "This portfolio is one Next.js site with four pages. The words live in the repository. Nothing here is loaded from a client's system.",
   },
   contact: {
-    terms: "I work remotely, as a contractor or through an employer of record.",
+    terms: "Elemental 4 Web, 2020–2026, with US and international product teams.",
     emailCta: "Email me",
     background: "Background",
-    leadTitle: "Senior Frontend Engineer",
+    leadTitle: "Frontend lead",
     leadLines: [
       "Elemental 4 Web. Remote, for US and international product teams.",
       "I ship production frontends in strict React and TypeScript, and in Next.js (App Router, SSR/SSG, ISR), including a shared Storybook design system. Module Federation is only where another team deploys on its own release.",
@@ -411,7 +411,7 @@ const es: Dictionary = {
   },
   home: {
     title: "Dirijo el frontend para equipos de producto.",
-    lead: "Soy Erick Alexander Sánchez Guzmán, ingeniero frontend senior. De 2020 a 2026 he sido ingeniero frontend senior en Elemental 4 Web, y publico frontends de producción en React, TypeScript y Next.js para equipos de producto de Estados Unidos e internacionales. Estoy disponible ahora.",
+    lead: "Soy Erick Alexander Sánchez Guzmán, ingeniero frontend senior. De 2020 a 2026 he sido líder de frontend en Elemental 4 Web, y publico frontends de producción en React, TypeScript y Next.js para equipos de producto de Estados Unidos e internacionales. Estoy disponible ahora.",
     skillsLabel: "Habilidades principales",
     skills: homeSkills,
     seeProjects: "Ver los destacados",
@@ -434,8 +434,8 @@ const es: Dictionary = {
         text: "Las pruebas, las revisiones de accesibilidad y el CI corren antes de que una versión avance. La prueba está en el pipeline, no en una diapositiva.",
       },
     ],
-    workTitle: "Cómo tomo el trabajo",
-    workBody: "Trabajo en remoto, como contractor o a través de un employer of record.",
+    workTitle: "Remoto",
+    workBody: "Elemental 4 Web, 2020–2026, con equipos de producto de Estados Unidos e internacionales.",
   },
   projects: {
     title: "Proyectos destacados",
@@ -453,7 +453,7 @@ const es: Dictionary = {
     intro: "Estas son las habilidades de mi currículum.",
     windowLabel: "hechos",
     work: "Remoto",
-    terms: "Contractor o EOR",
+    terms: "Equipos de producto",
     groupsTitle: "Habilidades",
     groups: [
       {
@@ -539,10 +539,10 @@ const es: Dictionary = {
       "Este portafolio es un sitio Next.js con cuatro páginas. El texto vive en el repositorio. Nada de aquí se carga desde el sistema de un cliente.",
   },
   contact: {
-    terms: "Trabajo en remoto, como contractor o a través de un employer of record.",
+    terms: "Elemental 4 Web, 2020–2026, con equipos de producto de Estados Unidos e internacionales.",
     emailCta: "Escribir por correo",
     background: "Trayectoria",
-    leadTitle: "Ingeniero frontend senior",
+    leadTitle: "Líder de frontend",
     leadLines: [
       "Elemental 4 Web. Remoto, para equipos de producto de Estados Unidos e internacionales.",
       "Publico frontends de producción en React y TypeScript estrictos, y en Next.js (App Router, SSR/SSG, ISR), incluido un sistema de diseño compartido en Storybook. Module Federation solo entra cuando otro equipo despliega en su propio tren de publicación.",

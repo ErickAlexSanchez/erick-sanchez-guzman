@@ -85,7 +85,7 @@ export function ProjectsView({ topic }: { topic: string }) {
           <p className="mt-space-md max-w-[62ch] text-pretty font-body-md text-body-md text-on-surface-variant">
             {copy.projects.asideBody}
           </p>
-          <Link className={`${buttonPrimary} mt-space-lg`} href="/contact">
+          <Link className={`${buttonPrimary} mt-space-lg`} href="/contact" scroll={false}>
             {copy.projects.contact}
           </Link>
         </aside>

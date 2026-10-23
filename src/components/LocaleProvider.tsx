@@ -134,7 +134,7 @@ export function LocaleProvider({
   useEffect(() => {
     document.documentElement.lang = locale;
     const item = messages[locale].meta[metaKey(pathname)];
-    const title = `${item.title} · ${person.name}`;
+    const title = item.title === person.name ? item.title : `${item.title} · ${person.name}`;
     document.title = title;
     upsertMeta("name", "description", item.description);
     upsertMeta("property", "og:title", title);

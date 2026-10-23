@@ -4,6 +4,7 @@ import Link from "next/link";
 import { tx } from "../content/locale";
 import { person } from "../content/profile";
 import { projects } from "../content/projects";
+import { chipHover } from "./classes";
 import { useLocale } from "./LocaleProvider";
 import { PageShell } from "./PageShell";
 import { RichText } from "./RichText";
@@ -54,10 +55,7 @@ export function StackView() {
                 <h3 className="font-headline text-sm font-semibold text-on-surface">{group.title}</h3>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <li
-                      className="max-w-full rounded-full bg-surface-container px-3 py-1 font-label-code text-xs break-words text-secondary"
-                      key={item}
-                    >
+                    <li className={`${chipHover} text-secondary`} key={item}>
                       {item}
                     </li>
                   ))}
@@ -71,7 +69,7 @@ export function StackView() {
           <h2 className="font-headline text-lg font-semibold text-on-surface">{copy.stack.decisionsTitle}</h2>
           <div className="mt-space-md flex flex-col gap-3">
             {projects.map((project) => (
-              <article className="rounded-xl bg-surface-container-high p-space-lg" key={project.id}>
+              <article className="card-hover rounded-xl bg-surface-container-high p-space-lg" key={project.id}>
                 <h3 className="font-headline text-base font-semibold text-on-surface">{project.name}</h3>
                 <p className="mt-space-sm max-w-[68ch] text-pretty font-body-md text-body-md text-on-surface-variant">
                   <RichText text={tx(locale, project.decision)} />

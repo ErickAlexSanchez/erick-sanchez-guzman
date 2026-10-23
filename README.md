@@ -4,9 +4,7 @@ This repository is the portfolio site of Erick Alexander Sánchez Guzmán, senio
 
 WakeMeGPS and stoicequilibrium are personal products. The six highlighted cases are portfolio versions of work that cannot be shown, similar to professional projects.
 
-From 2020 to 2026 he has been a senior frontend engineer at Elemental 4 Web. The resume scope is production frontends in React, TypeScript, and Next.js, a shared design system, and the pipeline that tests a version before it moves. The master's in Software Architecture is in progress.
-
-A staff reader can review the rendering choice, the routes, and the content model in this file and in `docs/adr`.
+From 2020 to 2026 he has been frontend lead at Elemental 4 Web. The resume scope is production frontends in React, TypeScript, and Next.js, a shared design system, and the pipeline that tests a version before it moves. The master's in Software Architecture is in progress.
 
 ## What it is
 

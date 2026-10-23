@@ -44,9 +44,21 @@ test("the site copy does not freelance or wear the confidentiality banner", () =
   const messages = read("src/content/messages.ts");
   const projects = read("src/content/projects.ts");
   const banner = "whose confidentiality policy does not allow the real product to be shown";
-  assert.equal(messages.toLowerCase().includes("freelance"), false);
+  for (const file of [
+    "src/content/messages.ts",
+    "src/content/projects.ts",
+    "src/content/legal.ts",
+    "src/lib/jsonld.ts",
+    "README.md",
+  ]) {
+    const source = read(file).toLowerCase();
+    assert.equal(source.includes("freelance"), false, file);
+    assert.equal(source.includes("contractor"), false, file);
+    assert.equal(source.includes("employer of record"), false, file);
+  }
   assert.equal(messages.includes(banner), false);
   assert.equal(read("README.md").includes(banner), false);
+  assert.match(messages, /Master's in Software Architecture, in progress/);
   const personal = projects.slice(projects.indexOf('id: "wake-me-gps"'), projects.indexOf('id: "lumen"'));
   assert.equal(personal.includes("portfolio version of work that cannot be shown"), false);
   assert.equal(
