@@ -1,6 +1,5 @@
 node_modules
+.next
 dist
-.seed-roll.txt
-.impeccable/review
-.impeccable/brief-body.md
+*.tsbuildinfo
 *.local

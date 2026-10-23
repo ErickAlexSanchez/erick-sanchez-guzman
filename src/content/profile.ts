@@ -1,0 +1,43 @@
+export const person = {
+  name: "Erick Alexander Sánchez Guzmán",
+  role: "Senior Frontend Engineer",
+  email: "protechnologyea@gmail.com",
+  phoneDisplay: "+52 56 5731 5438",
+  phoneHref: "tel:+525657315438",
+  linkedIn:
+    "https://www.linkedin.com/in/erick-alexander-s%C3%A1nchez-guzm%C3%A1n-5029591ba/",
+  linkedInLabel: "LinkedIn",
+  place: "Mexico City",
+  work: "100% remote",
+  terms: "Contractor or employer of record",
+  hours: "Central Time, with US Eastern overlap",
+  status: "Available now",
+  languages: [
+    { name: "Spanish", level: "Native" },
+    { name: "English", level: "C1" },
+  ],
+  trajectory: {
+    organization: "Elemental 4 Web",
+    years: "2020–2026",
+    role: "Frontend lead on six efforts",
+  },
+  education: [
+    "Systems Engineering, bachelor's degree",
+    "Software Architecture, master's degree in progress",
+    "Meta Front-End certificate",
+    "IBM Full Stack certificate",
+  ],
+  skills: [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Design systems",
+    "Storybook",
+    "Tailwind",
+    "TanStack Query",
+    "Redux Toolkit",
+    "Accessibility",
+    "Testing",
+    "CI",
+  ],
+} as const;
