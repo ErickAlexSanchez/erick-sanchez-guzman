@@ -1,88 +1,194 @@
-export type ProjectSource =
-  | { kind: "github"; href: string; label: string }
-  | { kind: "local"; folder: string };
+export type ProjectLink = {
+  href: string;
+  label: string;
+};
+
+export type ProjectFact = {
+  label: string;
+  value: string;
+};
 
 export type Project = {
   id: string;
   name: string;
+  eyebrow: string;
+  year: string;
   decision: string;
+  summary: string;
   paragraphs: readonly string[];
-  source: ProjectSource;
+  facts: readonly ProjectFact[];
+  tags: readonly string[];
+  github?: ProjectLink;
+  live?: ProjectLink;
+  folder: string;
 };
 
 export const projects: readonly Project[] = [
   {
     id: "lumen",
     name: "Lumen",
+    eyebrow: "SISTEMA // DOS TRENES",
+    year: "2020–2026",
     decision:
-      "Two release trains: marketing pins `@lumen/ui` 1.0.0, account pins `@lumen/ui-next` 1.1.0. Module Federation only for the banner remote. Domain has no framework imports.",
+      "Marketing fija `@lumen/ui` 1.0.0. Account fija `@lumen/ui-next` 1.1.0. Module Federation solo para el banner.",
+    summary:
+      "Dos apps no salen el mismo día. Marketing se queda en una edición conocida y account avanza a la siguiente. El banner es el único remote.",
     paragraphs: [
-      "Lumen keeps two release trains. Marketing depends on `@lumen/ui` 1.0.0 (`packages/ui`). Account depends on `@lumen/ui-next` 1.1.0 (`packages/ui-next`). Edition 1.1.0 revises Button and requires a description on Dialog.",
-      "The marketing home is static. Pricing reprints every 60 seconds. The account folder is dynamic. Module Federation is only the banner remote, loaded by marketing. The design system arrives as a package dependency.",
-      "Color, space, and type tokens are CSS variables. Tailwind reads them. Domain code does not import React, Next, or `pg`. Storybook runs axe on the Button and Dialog stories before a version bump is allowed. The disabled Button story is excluded from that gate.",
+      "Lumen mantiene dos trenes. Marketing depende de `@lumen/ui` 1.0.0 (`packages/ui`). Account depende de `@lumen/ui-next` 1.1.0 (`packages/ui-next`). La edición 1.1.0 revisa Button y exige una descripción en Dialog.",
+      "La home de marketing es estática. Pricing se reimprime cada 60 segundos. La carpeta de account es dinámica. Module Federation es solo el remote del banner, cargado por marketing. El sistema de diseño llega como dependencia de paquete.",
+      "Color, espacio y tipo son variables CSS. Tailwind las lee. El dominio no importa React, Next ni `pg`. Storybook corre axe en las historias de Button y Dialog antes de permitir un bump. La historia del Button deshabilitado queda fuera de esa compuerta.",
     ],
-    source: {
-      kind: "github",
+    facts: [
+      { label: "Marketing", value: "@lumen/ui 1.0.0" },
+      { label: "Account", value: "@lumen/ui-next 1.1.0" },
+      { label: "Federation", value: "Solo el banner" },
+    ],
+    tags: ["React", "TypeScript", "Next.js", "Storybook", "Tailwind"],
+    github: {
       href: "https://github.com/ErickAlexSanchez/lumen",
-      label: "Lumen repository",
+      label: "Repositorio de Lumen",
     },
+    folder: "01-lumen",
   },
   {
     id: "draftline",
     name: "Draftline",
-    decision: "Queue model calls in a worker with a credit guard.",
+    eyebrow: "COLA // CRÉDITOS",
+    year: "2020–2026",
+    decision:
+      "Las llamadas al modelo salen de la petición: una cola en un worker, con un control de créditos.",
+    summary:
+      "`POST /jobs` inserta la fila en queued y devuelve el id. El worker llama al modelo solo si el saldo cubre el costo.",
     paragraphs: [
-      "Draftline is a writing workspace. `POST /jobs` inserts a row with status queued and returns the job id. The handler does not receive a model gateway and does not call the model.",
-      "A worker claims the row. Before it calls the model, a credit guard checks the tenant balance. A balance below the cost marks the job failed with `insufficient_credits`, does not call the model, and does not write a file. When the balance covers the cost, the worker calls the model, writes the text, and debits the credits in the same database transaction that marks the job succeeded.",
-      "TanStack Query keeps lists and saved drafts for 60 seconds. Job detail uses a stale time of zero and refetches until the status is terminal. This version has one tenant, a fake model adapter, and local disk for the files.",
+      "Draftline es un espacio de escritura. `POST /jobs` inserta una fila con estado queued y devuelve el id. El handler no recibe un gateway de modelo y no llama al modelo.",
+      "Un worker reclama la fila. Antes de llamar al modelo, un control de créditos revisa el saldo del tenant. Si el saldo no cubre el costo, el trabajo queda failed con `insufficient_credits`, no llama al modelo y no escribe un archivo. Si alcanza, el worker llama al modelo, escribe el texto y debita los créditos en la misma transacción que marca el trabajo succeeded.",
+      "TanStack Query conserva listas y borradores 60 segundos. El detalle del trabajo usa stale time cero y reconsulta hasta un estado terminal. Esta versión tiene un tenant, un adaptador de modelo falso y disco local para los archivos.",
     ],
-    source: { kind: "local", folder: "02-draftline" },
+    facts: [
+      { label: "Petición", value: "Inserta queued" },
+      { label: "Worker", value: "Llama al modelo" },
+      { label: "Créditos", value: "Corta si no alcanzan" },
+    ],
+    tags: ["React", "TypeScript", "Next.js", "TanStack Query"],
+    github: {
+      href: "https://github.com/ErickAlexSanchez/draftline",
+      label: "Repositorio de Draftline",
+    },
+    live: {
+      href: "https://web-xi-nine-93.vercel.app",
+      label: "Draftline en vivo",
+    },
+    folder: "02-draftline",
   },
   {
     id: "hearth",
     name: "Hearth",
-    decision: "Membership monolith. Coach is habits-only, not medical advice.",
+    eyebrow: "MEMBRESÍA // MONOLITO",
+    year: "2020–2026",
+    decision:
+      "Monolito de membresía. El coach es solo de hábitos y no es consejo médico.",
+    summary:
+      "Un proceso de Next.js. Postgres es la fuente de verdad, con un esquema por módulo. El coach no diagnostica ni recomienda una dosis.",
     paragraphs: [
-      "Hearth is one Next.js process: a membership monolith. Postgres is the source of truth, with a schema per module for identity, membership, feed, and coach.",
-      "Entitlement is checked on the server. A free account receives 403 for a members-only post, and that response does not include the body. The feed list omits those posts for a free account.",
-      "The coach is habits only. It does not diagnose and it does not recommend a dose. The screen says the reply is not medical advice. The coach is not gated on the member tier. Feed code does not mention coach. Coach code does not query the feed.",
-      "TanStack Query owns server state for the feed, a post, the session, and the coach thread. Redux stores only whether the composer is open and the local draft. The coach stream is `Cache-Control: no-store`.",
+      "Hearth es un proceso de Next.js: un monolito de membresía. Postgres es la fuente de verdad, con un esquema por módulo para identity, membership, feed y coach.",
+      "El derecho se comprueba en el servidor. Una cuenta free recibe 403 en una publicación solo para miembros, y esa respuesta no incluye el cuerpo. La lista del feed omite esas publicaciones para una cuenta free.",
+      "El coach es solo de hábitos. No diagnostica y no recomienda una dosis. La pantalla dice que la respuesta no es consejo médico. El coach no depende del nivel de membresía. El código del feed no menciona al coach. El código del coach no consulta el feed.",
+      "TanStack Query guarda el estado de servidor del feed, una publicación, la sesión y el hilo del coach. Redux guarda solo si el compositor está abierto y el borrador local. El stream del coach es `Cache-Control: no-store`.",
     ],
-    source: { kind: "local", folder: "03-hearth" },
+    facts: [
+      { label: "Proceso", value: "Un monolito Next.js" },
+      { label: "Feed", value: "403 sin el cuerpo" },
+      { label: "Coach", value: "Hábitos, no medicina" },
+    ],
+    tags: ["React", "TypeScript", "Next.js", "TanStack Query", "Redux Toolkit"],
+    github: {
+      href: "https://github.com/ErickAlexSanchez/hearth",
+      label: "Repositorio de Hearth",
+    },
+    live: {
+      href: "https://hearth-nine-pink.vercel.app",
+      label: "Hearth en vivo",
+    },
+    folder: "03-hearth",
   },
   {
     id: "vesper-counsel",
     name: "Vesper & Counsel",
+    eyebrow: "PEDIDOS // WEBHOOK",
+    year: "2020–2026",
     decision:
-      "Orders written only from a signed webhook. Checkout is a demo simulator. Stripe is never activated.",
+      "Un pedido se escribe solo desde un webhook firmado. El checkout es un demo. Stripe no se activa.",
+    summary:
+      "Vesper y Counsel comparten un servicio. El catálogo es estático. El pedido nace después de que la firma del webhook acepta el payload.",
     paragraphs: [
-      "Vesper and Counsel share one commerce service. Vesper is a fictional jewelry studio. Counsel is a fictional studio for reading a letter, an agreement, or formation papers. Counsel is not a law firm, and nothing on that site is legal advice.",
-      "Catalog pages are static, generated from a module with no framework. Checkout is dynamic. An order is written only inside the webhook handler, after the signature check accepts the payload. The development adapter signs that payload with a local secret. It does not call a payment network.",
-      "Stripe settings can be stored. The connected column is constrained to false, and checkout does not read those settings. `STRIPE_MODE` accepts only `simulator`. Stripe is never activated.",
+      "Vesper y Counsel comparten un servicio de comercio. Vesper es un estudio de joyería ficticio. Counsel es un estudio ficticio para leer una carta, un acuerdo o papeles de constitución. Counsel no es un despacho, y nada en ese sitio es asesoría legal.",
+      "Las páginas de catálogo son estáticas, generadas desde un módulo sin framework. El checkout es dinámico. Un pedido se escribe solo dentro del handler del webhook, después de que la comprobación de firma acepta el payload. El adaptador de desarrollo firma ese payload con un secreto local. No llama a una red de pagos.",
+      "Se pueden guardar ajustes de Stripe. La columna connected está restringida a false, y el checkout no lee esos ajustes. `STRIPE_MODE` solo acepta `simulator`. Stripe no se activa. No hay URL pública de este caso.",
     ],
-    source: { kind: "local", folder: "04-commerce" },
+    facts: [
+      { label: "Pedido", value: "Solo el webhook firmado" },
+      { label: "Checkout", value: "Demo, sin red de pagos" },
+      { label: "Stripe", value: "No se activa" },
+    ],
+    tags: ["React", "TypeScript", "Next.js"],
+    github: {
+      href: "https://github.com/ErickAlexSanchez/commerce",
+      label: "Repositorio de Vesper & Counsel",
+    },
+    folder: "04-commerce",
   },
   {
     id: "slot",
     name: "Slot",
+    eyebrow: "AGENDA // VIDEO LOCAL",
+    year: "2020–2026",
     decision:
-      "Scheduling and local video rooms. Zoom stays inactive unless credentials exist.",
+      "Agenda y salas de video locales. Zoom permanece inactivo si no están las credenciales.",
+    summary:
+      "Un horario abierto, un invitado, una sala. El token de video se emite solo si quien llama es el anfitrión o el invitado.",
     paragraphs: [
-      "Slot books one open time on a host's calendar for a single guest, then opens a video room for that host and that guest.",
-      "The video token is minted only after the server loads the booking and confirms the caller is the host or the guest. Tokens last `TOKEN_TTL_MINUTES`, an integer from 1 to 60, and the response is `Cache-Control: no-store`. Each booking is one insert. Postgres rejects a second row with the same host and slot start.",
-      "The running video adapter opens a local room. Zoom is constructed only when the account id, the client id, and the client secret are all set. If all three are empty, Zoom stays inactive. A partial set refuses to start.",
+      "Slot reserva un horario abierto en el calendario de un anfitrión para un solo invitado, y abre una sala de video para ese anfitrión y ese invitado.",
+      "El token de video se emite solo después de que el servidor carga la reserva y confirma que quien llama es el anfitrión o el invitado. Los tokens duran `TOKEN_TTL_MINUTES`, un entero de 1 a 60, y la respuesta es `Cache-Control: no-store`. Cada reserva es un insert. Postgres rechaza una segunda fila con el mismo anfitrión y el mismo inicio.",
+      "El adaptador de video en ejecución abre una sala local. Zoom se construye solo cuando existen el account id, el client id y el client secret. Si los tres están vacíos, Zoom permanece inactivo. Un conjunto parcial se niega a arrancar. Esta carpeta no tiene remoto público.",
     ],
-    source: { kind: "local", folder: "05-slot" },
+    facts: [
+      { label: "Reserva", value: "Un anfitrión, un inicio" },
+      { label: "Token", value: "Solo anfitrión o invitado" },
+      { label: "Zoom", value: "Inactivo sin credenciales" },
+    ],
+    tags: ["React", "TypeScript"],
+    folder: "05-slot",
   },
   {
     id: "pathmark",
     name: "Pathmark",
+    eyebrow: "LECCIONES // LEDGER",
+    year: "2020–2026",
     decision:
-      "Ledger of lessons. Public lessons page; opening a lesson sends Authorization Bearer local-demo-token.",
+      "Respuestas idempotentes sobre un ledger append-only. Las lecciones son públicas; abrir una lección envía Authorization Bearer.",
+    summary:
+      "Puntos, racha e insignia son una proyección del log. La página de lecciones es pública. El progreso pide un Bearer.",
     paragraphs: [
-      "Pathmark is a ledger of lessons. Points, the streak, and the Wayfinder badge are a projection of an append-only log. A repeated idempotency key returns the stored result and does not insert again.",
-      "The lessons page is public. `GET /content/lessons` and the lesson document are cacheable and do not carry an answer key. Opening a lesson also requests progress, and that request sends `Authorization: Bearer local-demo-token`. Recording an answer sends the same header. There is no sign-in form. The browser does not grade.",
+      "Pathmark es un ledger de lecciones. Los puntos, la racha y la insignia Wayfinder son una proyección de un log append-only. Una clave de idempotencia repetida devuelve el resultado guardado y no inserta de nuevo.",
+      "La página de lecciones es pública. `GET /content/lessons` y el documento de la lección se pueden cachear y no llevan la clave de respuesta. Abrir una lección también pide el progreso, y esa petición envía `Authorization: Bearer local-demo-token`. Registrar una respuesta envía el mismo header. No hay formulario de acceso. El navegador no califica.",
+      "Esta carpeta no tiene remoto público.",
     ],
-    source: { kind: "local", folder: "06-pathmark" },
+    facts: [
+      { label: "Lecciones", value: "Públicas, sin clave" },
+      { label: "Abrir", value: "Authorization Bearer" },
+      { label: "Reintento", value: "La misma clave no inserta" },
+    ],
+    tags: ["React", "TypeScript", "TanStack Query"],
+    folder: "06-pathmark",
   },
 ];
+
+export const projectFilters = [
+  { id: "todos", label: "Todos" },
+  { id: "lumen", label: "Sistema de diseño" },
+  { id: "draftline", label: "Cola" },
+  { id: "hearth", label: "Membresía" },
+  { id: "vesper-counsel", label: "Webhook" },
+  { id: "slot", label: "Agenda" },
+  { id: "pathmark", label: "Lecciones" },
+] as const;

@@ -2,13 +2,12 @@ import { PageShell } from "../components/PageShell";
 
 export default function NotFound() {
   return (
-    <PageShell>
-      <h1>This page is not on the site</h1>
-      <p>The public pages are home, projects, stack, and contact.</p>
-      <p>
-        <a className="hit text-link" href="/">
-          Back to home
-        </a>
+    <PageShell current="home">
+      <h1 className="font-headline text-headline-lg-mobile font-bold text-on-surface">
+        Esa ruta no está
+      </h1>
+      <p className="mt-space-sm font-body-md text-body-md text-on-surface-variant">
+        El sitio tiene inicio, proyectos, stack y contacto.
       </p>
     </PageShell>
   );

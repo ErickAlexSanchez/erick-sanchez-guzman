@@ -3,3 +3,6 @@ node_modules
 dist
 *.tsbuildinfo
 *.local
+
+.stitch-ref/
+

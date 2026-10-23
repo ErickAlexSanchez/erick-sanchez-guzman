@@ -1,26 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Fraunces, IBM_Plex_Mono, Public_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { person } from "../content/profile";
 import "./globals.css";
 
-const display = Fraunces({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-display",
+  variable: "--font-inter",
 });
 
-const sans = Public_Sans({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-sans",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
@@ -29,12 +22,12 @@ export const metadata: Metadata = {
     template: `%s · ${person.name}`,
   },
   description:
-    "Senior frontend engineer in Mexico City. Remote, as a contractor or through an employer of record. Central Time with US Eastern overlap. Available now.",
+    "Ingeniero frontend senior en Ciudad de México. Remoto, como contractor o por EOR. Hora del Centro, con cruce a la hora del Este de EE. UU. Disponible ahora.",
   icons: { icon: "/favicon.svg" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eef3f6",
+  themeColor: "#0f131c",
   width: "device-width",
   initialScale: 1,
 };
@@ -45,11 +38,14 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
-    >
-      <body>{children}</body>
+    <html className={`dark ${inter.variable} ${mono.variable}`} lang="es">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-surface font-sans text-on-surface antialiased">{children}</body>
     </html>
   );
 }

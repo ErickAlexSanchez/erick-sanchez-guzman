@@ -8,22 +8,22 @@ A staff reader can review the rendering choice, the routes, and the content mode
 
 ## What it is
 
-Four pages:
+Four pages, in Spanish:
 
 | Path | Page |
 | --- | --- |
-| `/` | Home |
-| `/projects` | Projects and case studies |
-| `/stack` | Stack and architecture |
-| `/contact` | Contact and trajectory |
+| `/` | Inicio |
+| `/projects` | Proyectos y casos de estudio |
+| `/stack` | Stack y arquitectura |
+| `/contact` | Contacto y trayectoria |
 
-Home states place, remote terms, hours, and availability, then lists the six decisions. Projects repeats those decisions as the headings and records the rule each version keeps. Stack names the tools and where each boundary sits. Contact lists email, phone, LinkedIn, trajectory, education, and languages.
+Home states place, remote terms, hours, and availability, then opens on the Lumen decision. Projects repeats the six decisions as the headings and records the rule each version keeps. Stack names the tools and points at those decisions. Contact lists email, phone, LinkedIn, trajectory, education, and languages.
 
-The apps behind the case studies are not deployed. The projects page links a GitHub repository only when that folder has a public remote. Otherwise it names the local folder and does not publish a dead URL.
+The projects page links a GitHub repository only when that folder has a public remote. Slot and Pathmark have no remote, so the page names `05-slot` and `06-pathmark` and does not publish a URL. Draftline is also at https://web-xi-nine-93.vercel.app. Hearth is also at https://hearth-nine-pink.vercel.app. The other cases have no public app URL.
 
 ## Rendering
 
-Next.js App Router. Every page is a server component. `src/components/PageShell.tsx` renders the header, the primary navigation, `main`, and the footer. The current page is a prop, so marking the active link does not require a client component. Navigation uses ordinary links and works without client-side fetching.
+Next.js App Router. Every page is a server component. `src/components/PageShell.tsx` renders the header, `main`, and a footer whose navigation is the bottom bar. The current page is a prop, so marking the active link does not require a client component. Navigation uses ordinary links. Copying the email address and opening a mail draft are the only client islands. The type is Inter and JetBrains Mono on a `#0f131c` surface, with the same color tokens on every route.
 
 There is no environment variable. There is no `.env` file.
 
